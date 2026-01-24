@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-static void	restore_stack(t_stack **stack, int moves_count, int is_a)
+static void	restore_stack(t_list **stack, int items_pushed, int is_a)
 {
 	int	i;
 
-	if (moves_count == ft_lstsize((t_list *)*stack))
+	if (items_pushed == ft_lstsize(*stack))
 		return ;
 	i = 0;
-	while (i < moves_count)
+	while (i < items_pushed)
 	{
 		if (is_a)
 			rra(stack);
@@ -29,17 +29,17 @@ static void	restore_stack(t_stack **stack, int moves_count, int is_a)
 	}
 }
 
-static int	qsort_base_a(t_stack **a, int len)
+static int	qsort_base_a(t_list **a, int len)
 {
 	if (is_sorted(*a, len, 1))
 		return (1);
 	if (len == 2)
 	{
-		if ((*a)->value > (*a)->next->value)
+		if ((int)(long)(*a)->content > (int)(long)(*a)->next->content)
 			sa(*a);
 		return (1);
 	}
-	if (len == 3 && ft_lstsize((t_list *)*a) == 3)
+	if (len == 3 && ft_lstsize(*a) == 3)
 	{
 		sort_three(a);
 		return (1);
@@ -47,7 +47,7 @@ static int	qsort_base_a(t_stack **a, int len)
 	return (0);
 }
 
-static int	qsort_base_b(t_stack **a, t_stack **b, int len)
+static int	qsort_base_b(t_list **a, t_list **b, int len)
 {
 	if (len == 0)
 		return (1);
@@ -58,7 +58,7 @@ static int	qsort_base_b(t_stack **a, t_stack **b, int len)
 	}
 	if (len == 2)
 	{
-		if ((*b)->value < (*b)->next->value)
+		if ((int)(long)(*b)->content < (int)(long)(*b)->next->content)
 			sb(*b);
 		pa(a, b);
 		pa(a, b);
@@ -67,58 +67,59 @@ static int	qsort_base_b(t_stack **a, t_stack **b, int len)
 	return (0);
 }
 
-int	qsort_a(t_stack **a, t_stack **b, int len)
+int	qsort_a(t_list **a, t_list **b, int len)
 {
 	int	pivot;
-	int	moves_count;
+	int	items_pushed;
 	int	i;
 
 	if (qsort_base_a(a, len))
 		return (1);
 	pivot = get_median(*a, len);
-	moves_count = 0;
+	items_pushed = 0;
 	i = 0;
 	while (i < len)
 	{
-		if ((int)(long)(*a)->value < pivot)
+		if ((int)(long)(*a)->content < pivot)
 		{
 			pb(a, b);
-			moves_count++;
+			items_pushed++;
 		}
 		else
 			ra(a);
 		i++;
 	}
-	restore_stack(a, len - moves_count, 1);
-	qsort_a(a, b, len - moves_count);
-	qsort_b(a, b, moves_count);
+	if (len != ft_lstsize(*a))
+		restore_stack(a, len - items_pushed, 1);
+	qsort_a(a, b, len - items_pushed);
+	qsort_b(a, b, items_pushed);
 	return (1);
 }
 
-int	qsort_b(t_stack **a, t_stack **b, int len)
+int	qsort_b(t_list **a, t_list **b, int len)
 {
 	int	pivot;
-	int	moves_count;
+	int	items_pushed;
 	int	i;
 
 	if (qsort_base_b(a, b, len))
 		return (1);
 	pivot = get_median(*b, len);
-	moves_count = 0;
+	items_pushed = 0;
 	i = 0;
 	while (i < len)
 	{
-		if ((int)(long)(*b)->value >= pivot)
+		if ((int)(long)(*b)->content >= pivot)
 		{
 			pa(a, b);
-			moves_count++;
+			items_pushed++;
 		}
 		else
 			rb(b);
 		i++;
 	}
-	qsort_a(a, b, moves_count);
-	restore_stack(b, len - moves_count, 0);
-	qsort_b(a, b, len - moves_count);
+	qsort_a(a, b, items_pushed);
+	restore_stack(b, len - items_pushed, 0);
+	qsort_b(a, b, len - items_pushed);
 	return (1);
 }

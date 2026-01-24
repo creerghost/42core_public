@@ -45,7 +45,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		lst = lst->next;
 	}
 }
-
+/*
 t_list	*ft_lstmap(t_list *lst, void *(*f) (void*), void (*del)(void*))
 {
 	t_list	*res;
@@ -67,3 +67,4 @@ t_list	*ft_lstmap(t_list *lst, void *(*f) (void*), void (*del)(void*))
 	}
 	return (res);
 }
+*/

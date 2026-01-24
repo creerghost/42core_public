@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	*bubble_sort(int *arr, int len)
+static void	bubble_sort(int *arr, int len)
 {
 	int	i;
 	int	j;
@@ -21,7 +21,7 @@ static int	*bubble_sort(int *arr, int len)
 	i = 0;
 	while (i < len)
 	{
-		j = i;
+		j = i + 1;
 		while (j < len)
 		{
 			if (arr[i] > arr[j])
@@ -34,42 +34,45 @@ static int	*bubble_sort(int *arr, int len)
 		}
 		i++;
 	}
-	return (arr);
 }
 
-int	get_median(t_stack *stack, int len)
+int	get_median(t_list *stack, int len)
 {
 	int		*arr;
 	int		i;
-	char	res;
-	t_stack	*ptr;
+	int		res;
 
+	if (len <= 0 || !stack)
+		return (0);
 	arr = (int *)malloc(sizeof(int) * len);
 	if (!arr)
 		return (0);
-	ptr = stack;
 	i = 0;
-	while (i < len)
+	while (stack && i < len)
 	{
-		arr[i++] = (int)(long)ptr->value;
-		ptr = ptr->next;
+		arr[i++] = (int)(long)stack->content;
+		stack = stack->next;
 	}
-	arr = bubble_sort(arr, len);
-	res = arr[len / 2];
+	bubble_sort(arr, i);
+	res = arr[i / 2];
 	free(arr);
 	return (res);
 }
 
-int	is_sorted(t_stack *stack, int len, int is_ascending)
+int	is_sorted(t_list *stack, int len, int is_ascending)
 {
 	int	i;
 
+	if (!stack || len <= 1)
+		return (1);
 	i = 0;
-	while (stack && stack->next && i < len - 1)
+	while (stack->next && i < len - 1)
 	{
-		if (is_ascending && stack->value > stack->next->value)
+		if (is_ascending && (int)(long)stack->content >
+			(int)(long)stack->next->content)
 			return (0);
-		if (!is_ascending && stack->value < stack->next->value)
+		if (!is_ascending && (int)(long)stack->content <
+			(int)(long)stack->next->content)
 			return (0);
 		stack = stack->next;
 		i++;
@@ -77,15 +80,15 @@ int	is_sorted(t_stack *stack, int len, int is_ascending)
 	return (1);
 }
 
-void	sort_three(t_stack **stack_a)
+void	sort_three(t_list **stack_a)
 {
 	long	fst;
 	long	snd;
 	long	trd;
 
-	fst = (long)(*stack_a)->value;
-	snd = (long)(*stack_a)->next->value;
-	trd = (long)(*stack_a)->next->next->value;
+	fst = (long)(*stack_a)->content;
+	snd = (long)(*stack_a)->next->content;
+	trd = (long)(*stack_a)->next->next->content;
 	if (fst > snd && snd < trd && fst < trd)
 		sa(*stack_a);
 	else if (fst > snd && snd > trd)

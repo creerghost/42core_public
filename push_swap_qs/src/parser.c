@@ -24,18 +24,18 @@ static void	free_split(char **args)
 	free(args);
 }
 
-static int	check_duplicate(t_stack *stack, int num)
+static int	check_duplicate(t_list *stack, int num)
 {
 	while (stack)
 	{
-		if ((long)stack->value == (long)num)
+		if ((long)stack->content == (long)num)
 			return (1);
 		stack = stack->next;
 	}
 	return (0);
 }
 
-static int	process_args(char **args, t_stack **stack_a)
+static int	process_args(char **args, t_list **stack_a)
 {
 	long	num;
 	int		i;
@@ -47,13 +47,13 @@ static int	process_args(char **args, t_stack **stack_a)
 			return (0);
 		if (check_duplicate(*stack_a, (int)num))
 			return (0);
-		ft_lstadd_back_ps(stack_a, ft_lstnew_ps((int)num));
+		ft_lstadd_back(stack_a, ft_lstnew((int)num));
 		i++;
 	}
 	return (1);
 }
 
-static void	handle_error(t_stack **stack, char **args, int should_free_args)
+static void	handle_error(t_list **stack, char **args, int should_free_args)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (stack && *stack)
@@ -63,7 +63,7 @@ static void	handle_error(t_stack **stack, char **args, int should_free_args)
 	exit(1);
 }
 
-void	parse_args(int argc, char **argv, t_stack **stack_a)
+void	parse_args(int argc, char **argv, t_list **stack_a)
 {
 	char	**splitted_args;
 
@@ -72,6 +72,11 @@ void	parse_args(int argc, char **argv, t_stack **stack_a)
 		splitted_args = ft_split(argv[1], ' ');
 		if (!splitted_args)
 			exit(1);
+		if (!splitted_args[0])
+		{
+			free_split(splitted_args);
+			exit(1);
+		}
 		if (!process_args(splitted_args, stack_a))
 			handle_error(stack_a, splitted_args, 1);
 		free_split(splitted_args);

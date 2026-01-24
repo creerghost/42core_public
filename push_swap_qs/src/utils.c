@@ -39,10 +39,10 @@ int	ft_atol_safe(const char *str, long *result)
 	return (1);
 }
 
-void	free_stack(t_stack **stack)
+void	free_stack(t_list **stack)
 {
-	t_stack	*tmp;
-	t_stack	*current;
+	t_list	*tmp;
+	t_list	*current;
 
 	if (!stack || !*stack)
 		return ;
@@ -54,41 +54,4 @@ void	free_stack(t_stack **stack)
 		current = tmp;
 	}
 	*stack = NULL;
-}
-
-t_stack	*ft_lstnew_ps(int content)
-{
-	t_stack	*new;
-
-	new = (t_stack *)malloc(sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->value = (void *)(long)content;
-	new->index = -1;
-	new->next = NULL;
-	return (new);
-}
-
-t_stack	*ft_lstlast_ps(t_stack *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_lstadd_back_ps(t_stack **lst, t_stack *new)
-{
-	t_stack	*last;
-
-	if (!lst || !new)
-		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
-	{
-		last = ft_lstlast_ps(*lst);
-		last->next = new;
-	}
 }
