@@ -47,7 +47,7 @@ static int	process_args(char **args, t_list **stack_a)
 			return (0);
 		if (check_duplicate(*stack_a, (int)num))
 			return (0);
-		ft_lstadd_back(stack_a, ft_lstnew((int)num));
+		ft_lstadd_back(stack_a, ft_lstnew(num));
 		i++;
 	}
 	return (1);
@@ -73,10 +73,7 @@ void	parse_args(int argc, char **argv, t_list **stack_a)
 		if (!splitted_args)
 			exit(1);
 		if (!splitted_args[0])
-		{
-			free_split(splitted_args);
-			exit(1);
-		}
+			handle_error(stack_a, splitted_args, 1);
 		if (!process_args(splitted_args, stack_a))
 			handle_error(stack_a, splitted_args, 1);
 		free_split(splitted_args);

@@ -21,25 +21,25 @@ push_swap is an algorithm project. The goal is to sort data on a stack, with a l
 | rrb | reverse rotate b                    | Shift all elements of stack B down by 1.                           |
 | rrr | reverse rotate a + reverse rotate b | rra and rrb at the same time.                                  |
 ## Algorithm
-### Small Stacks (<= 5 numbers)
+### Small Stacks (<= 3 numbers)
 * 2 and 3 numbers: Hard-coded logic.
 ***Example:**
 	```bash
 	if (fst > snd && snd < trd && fst < trd)
 	sa(*stack_a);
 	```
-### Large Stacks (> 5 numbers)
-I implemented a Quick sort algorithm:
+### Large Stacks (> 3 numbers)
+I implemented a Quick Sort algorithm:
 The algorithm splits the stack into smaller chunks until they are small enough to sort instantly.
 1. Partitioning Stack A (qsort_a)
-	- The goal is to move smaller numbers to Stack B.
     - Find the median of the current range.
     - Push all numbers smaller than the median to Stack B.
+	- Rotate all numbers higher than the median in Stack A.
     - Recursively sort the remaining numbers in A, then the numbers pushed to B.
 2. Partitioning Stack B (qsort_b)
-    - The goal is to move larger numbers back to Stack A (sorted).
     - Find the median of the current range.
 	- Push all numbers larger or equal to the median back to Stack A.
+	- Rotate all numbers lower than the median in Stack A.
 	- Recursively sort the numbers pushed to A, then the remaining numbers in B.
 3. Recursion stops when a partition is tiny:
 	- Size ≤ 2: Swap if needed (sa / sb).
@@ -74,19 +74,20 @@ ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 To verify the stack is actually sorted, you can use the provided checker:
 ```bash
 ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
-_Should output: **OK**_
+OK
 ```
 ***
 # Resources
 [Linked Lists - GeeksForGeeks](https://www.geeksforgeeks.org/dsa/linked-list-data-structure/)
 [Sorting Algorithms - GeeksForGeeks](https://www.geeksforgeeks.org/dsa/sorting-algorithms/)
 [push_swap tester by gemartin99](https://github.com/gemartin99/Push-Swap-Tester)
+[push_swap visualizer by o-reo](https://github.com/o-reo/push_swap_visualizer)
 
 ## AI usage
 This project utilized AI assistance for the following specific tasks:
+
+- Brainstorm and visualize how to implement linked lists tailored to the push_swap stack operations.
 - Debugging: 
 	The AI helped identify and fix a critical integer overflow bug in the get_median function (changing char to int) which was causing infinite loops on large datasets.
-- Logic Correction:
-	It assisted in correcting the recursion logic in qsort_b to ensure the stack was properly restored before recursive calls, fixing a sorting failure.
 - Edge Cases:
 	I used AI to generate a list of tricky inputs (e.g., duplicates, INT_MAX, non-integer inputs) to verify the program's error management.

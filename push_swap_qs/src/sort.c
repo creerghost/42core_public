@@ -80,7 +80,7 @@ int	qsort_a(t_list **a, t_list **b, int len)
 	i = 0;
 	while (i < len)
 	{
-		if ((int)(long)(*a)->content < pivot)
+		if ((long)(*a)->content < pivot)
 		{
 			pb(a, b);
 			items_pushed++;
