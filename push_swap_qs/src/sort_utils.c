@@ -6,7 +6,7 @@
 /*   By: vlnikola <vlnikola@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:11:37 by vlnikola          #+#    #+#             */
-/*   Updated: 2026/01/24 11:44:41 by vlnikola         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:03:06 by vlnikola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ static void	bubble_sort(int *arr, int len)
 	}
 }
 
-int	get_median(t_list *stack, int len)
+int	get_median(t_list *stack, int len, int *pivot)
 {
 	int		*arr;
 	int		i;
-	int		res;
 
 	if (len <= 0 || !stack)
 		return (0);
@@ -54,9 +53,9 @@ int	get_median(t_list *stack, int len)
 		stack = stack->next;
 	}
 	bubble_sort(arr, i);
-	res = arr[i / 2];
+	*pivot = arr[i / 2];
 	free(arr);
-	return (res);
+	return (1);
 }
 
 int	is_sorted(t_list *stack, int len, int is_ascending)
@@ -78,31 +77,4 @@ int	is_sorted(t_list *stack, int len, int is_ascending)
 		i++;
 	}
 	return (1);
-}
-
-void	sort_three(t_list **stack_a)
-{
-	long	fst;
-	long	snd;
-	long	trd;
-
-	fst = (long)(*stack_a)->content;
-	snd = (long)(*stack_a)->next->content;
-	trd = (long)(*stack_a)->next->next->content;
-	if (fst > snd && snd < trd && fst < trd)
-		sa(*stack_a);
-	else if (fst > snd && snd > trd)
-	{
-		sa(*stack_a);
-		rra(stack_a);
-	}
-	else if (fst > snd && snd < trd && fst > trd)
-		ra(stack_a);
-	else if (fst < snd && snd > trd && fst < trd)
-	{
-		sa(*stack_a);
-		ra(stack_a);
-	}
-	else if (fst < snd && snd > trd && fst > trd)
-		rra(stack_a);
 }

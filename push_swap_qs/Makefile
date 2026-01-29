@@ -24,6 +24,7 @@ SRCS        = src/parser.c \
               src/cmds/rotate.c \
               src/cmds/reverse_rotate.c \
 			  src/sort_utils.c \
+			  src/sort_small.c \
 			  src/sort.c
 
 OBJS        = $(SRCS:.c=.o)
