@@ -49,7 +49,7 @@ int	get_median(t_list *stack, int len, int *pivot)
 	i = 0;
 	while (stack && i < len)
 	{
-		arr[i++] = (int)(long)stack->content;
+		arr[i++] = stack->content;
 		stack = stack->next;
 	}
 	bubble_sort(arr, i);
@@ -67,11 +67,11 @@ int	is_sorted(t_list *stack, int len, int is_ascending)
 	i = 0;
 	while (stack->next && i < len - 1)
 	{
-		if (is_ascending && (int)(long)stack->content >
-			(int)(long)stack->next->content)
+		if (is_ascending && stack->content
+			> stack->next->content)
 			return (0);
-		if (!is_ascending && (int)(long)stack->content <
-			(int)(long)stack->next->content)
+		if (!is_ascending && stack->content
+			< stack->next->content)
 			return (0);
 		stack = stack->next;
 		i++;

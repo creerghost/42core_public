@@ -14,7 +14,7 @@
 
 static void	swap(t_list *stack)
 {
-	void	*tmp;
+	int	tmp;
 
 	if (!stack || !stack->next)
 		return ;

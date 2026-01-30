@@ -14,13 +14,13 @@
 
 void	sort_three(t_list **a)
 {
-	long	fst;
-	long	snd;
-	long	trd;
+	int	fst;
+	int	snd;
+	int	trd;
 
-	fst = (long)(*a)->content;
-	snd = (long)(*a)->next->content;
-	trd = (long)(*a)->next->next->content;
+	fst = (*a)->content;
+	snd = (*a)->next->content;
+	trd = (*a)->next->next->content;
 	if (fst > snd && snd < trd && fst < trd)
 		sa(*a);
 	else if (fst > snd && snd > trd)
@@ -42,35 +42,30 @@ void	sort_three(t_list **a)
 static int	get_min_index(t_list *stack)
 {
 	int		min;
-	int		min_index;
+	int		res;
 	int		i;
-	t_list	*tmp;
 
-	if (!stack)
-		return (-1);
-	tmp = stack;
-	min = (int)(long)tmp->content;
-	min_index = 0;
+	min = INT_MAX;
+	res = 0;
 	i = 0;
-	while (tmp)
+	while (stack)
 	{
-		if ((int)(long)tmp->content < min)
+		if (stack->content < min)
 		{
-			min = (int)(long)tmp->content;
-			min_index = i;
+			min = stack->content;
+			res = i;
 		}
-		tmp = tmp->next;
+		stack = stack->next;
 		i++;
 	}
-	return (min_index);
+	return (res);
 }
 
 void	sort_five(t_list **a, t_list **b, int size)
 {
 	int	min_index;
 	int	i;
-	if (is_sorted(*a, size, 1))
-		return ;
+
 	while (size > 3)
 	{
 		min_index = get_min_index(*a);

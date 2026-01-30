@@ -35,7 +35,7 @@ static int	qsort_base_a(t_list **a, int len)
 		return (1);
 	if (len == 2)
 	{
-		if ((int)(long)(*a)->content > (int)(long)(*a)->next->content)
+		if ((*a)->content > (*a)->next->content)
 			sa(*a);
 		return (1);
 	}
@@ -61,7 +61,7 @@ static int	qsort_base_b(t_list **a, t_list **b, int len)
 	}
 	if (len == 2)
 	{
-		if ((int)(long)(*b)->content < (int)(long)(*b)->next->content)
+		if ((*b)->content < (*b)->next->content)
 			sb(*b);
 		pa(a, b);
 		pa(a, b);
@@ -84,7 +84,7 @@ int	qsort_a(t_list **a, t_list **b, int len)
 	i = -1;
 	while (++i < len)
 	{
-		if ((long)(*a)->content < pivot)
+		if ((*a)->content < pivot)
 		{
 			pb(a, b);
 			items_pushed++;
@@ -113,7 +113,7 @@ int	qsort_b(t_list **a, t_list **b, int len)
 	i = -1;
 	while (++i < len)
 	{
-		if ((int)(long)(*b)->content >= pivot)
+		if ((*b)->content >= pivot)
 		{
 			pa(a, b);
 			items_pushed++;

@@ -21,14 +21,15 @@ push_swap is an algorithm project. The goal is to sort data on a stack, with a l
 | rrb | reverse rotate b                    | Shift all elements of stack B down by 1.                           |
 | rrr | reverse rotate a + reverse rotate b | rra and rrb at the same time.                                  |
 ## Algorithm
-### Small Stacks (<= 3 numbers)
-* 2 and 3 numbers: Hard-coded logic.
-***Example:**
-	```bash
-	if (fst > snd && snd < trd && fst < trd)
-	sa(*stack_a);
-	```
-### Large Stacks (> 3 numbers)
+### Small Stacks (<= 5 numbers)
+* 2 and 3 numbers: Hard-coded logic. 
+	- **Example:**
+		```bash
+		if (fst > snd && snd < trd && fst < trd)
+		sa(*stack_a);
+		```
+* 5 numbers: Push the smallest numbers to B, sort 3 numbers in A, and push the smallest numbers back to A
+### Large Stacks (> 5 numbers)
 I implemented a Quick Sort algorithm:
 The algorithm splits the stack into smaller chunks until they are small enough to sort instantly.
 1. Partitioning Stack A (qsort_a)
@@ -79,6 +80,7 @@ OK
 ***
 # Resources
 [Linked Lists - GeeksForGeeks](https://www.geeksforgeeks.org/dsa/linked-list-data-structure/)
+[Linked List implementation of stack](https://www.geeksforgeeks.org/c/stack-using-linked-list-in-c/)
 [Sorting Algorithms - GeeksForGeeks](https://www.geeksforgeeks.org/dsa/sorting-algorithms/)
 [push_swap tester by gemartin99](https://github.com/gemartin99/Push-Swap-Tester)
 [push_swap visualizer by o-reo](https://github.com/o-reo/push_swap_visualizer)
@@ -88,6 +90,6 @@ This project utilized AI assistance for the following specific tasks:
 
 - Brainstorm and visualize how to implement linked lists tailored to the push_swap stack operations.
 - Debugging: 
-	The AI helped identify and fix a critical integer overflow bug in the get_median function (changing char to int) which was causing infinite loops on large datasets.
+	- The AI helped identify and fix a critical integer overflow bug in the get_median function (changing char to int) which was causing infinite loops on large datasets.
 - Edge Cases:
-	I used AI to generate a list of tricky inputs (e.g., duplicates, INT_MAX, non-integer inputs) to verify the program's error management.
+	- I used AI to generate a list of tricky inputs (e.g., duplicates, INT_MAX, non-integer inputs) to verify the program's error management.

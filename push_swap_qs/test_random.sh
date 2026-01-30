@@ -2,7 +2,7 @@
 
 # List of stack sizes to test
 sizes=(3 5 100 500)
-runs_count=10
+runs_count=100
 for size in "${sizes[@]}"; do
     echo "Testing size: $size"
     

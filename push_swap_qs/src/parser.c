@@ -28,7 +28,7 @@ static int	check_duplicate(t_list *stack, int num)
 {
 	while (stack)
 	{
-		if ((long)stack->content == (long)num)
+		if (stack->content == num)
 			return (1);
 		stack = stack->next;
 	}
