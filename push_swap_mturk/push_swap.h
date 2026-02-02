@@ -6,7 +6,7 @@
 /*   By: vlnikola <vlnikola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 02:45:04 by vlnikola          #+#    #+#             */
-/*   Updated: 2026/01/30 19:29:07 by vlnikola         ###   ########.fr       */
+/*   Updated: 2026/02/02 12:17:34 by vlnikola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_args(int argc, char **argv, t_stack **stack);
 void	free_stack(t_stack **stack);
 int		ft_atol_safe(const char *str, long *result);
 void	handle_error(t_stack **stack, char **args,
-		int should_free_args);
+			int should_free_args);
 int		is_sorted(t_stack *stack, int len, int is_ascending);
 void	free_split(char **args);
 // swap.c
@@ -53,17 +53,16 @@ void	rra(t_stack **stack_a);
 void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 // sort_utils.c
-void 	calculate_cost(t_stack *a, t_stack *b);
-void 	find_target_node(t_stack *a, t_stack *b);
-t_stack *find_min_node(t_stack *stack);
-void 	assign_index(t_stack *stack);
-void    fix_stack(t_stack **a);
-//sort_utils_2.c
+void	calculate_cost(t_stack *a, t_stack *b);
+void	find_target_node(t_stack *a, t_stack *b);
+void	assign_index(t_stack *stack);
+void	fix_stack(t_stack **a);
+//sort_move_node.c
 void	move_cheapest_node(t_stack **a, t_stack **b);
-t_stack	*get_cheapest_node(t_stack *b);
-void	do_solo_rotations(t_stack **a, t_stack **b, t_stack *node);
-void	do_double_rotations(t_stack **a, t_stack **b, t_stack *node);
-int 	abs_val(int n);
+void	do_double_rotations(t_stack **a, t_stack **b,
+			t_stack *cheapest_node);
+void	do_solo_rotations(t_stack **a, t_stack **b,
+			t_stack *cheapest_node);
 // sort_small.c
 void	sort_three(t_stack **stack_a);
 void	sort_five(t_stack **a, t_stack **b, int size);

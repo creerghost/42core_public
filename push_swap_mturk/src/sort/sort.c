@@ -6,7 +6,7 @@
 /*   By: vlnikola <vlnikola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:44:49 by vlnikola          #+#    #+#             */
-/*   Updated: 2026/01/30 19:29:18 by vlnikola         ###   ########.fr       */
+/*   Updated: 2026/02/02 12:07:03 by vlnikola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	sort_b(t_stack **a, t_stack **b)
 void	sort(t_stack **a, t_stack **b)
 {
 	int	len_a;
-	
+
 	len_a = ft_lstsize_ps(*a);
 	while (len_a > 3)
 	{

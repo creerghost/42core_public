@@ -6,7 +6,7 @@
 #    By: vlnikola <vlnikola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/23 02:34:49 by vlnikola          #+#    #+#              #
-#    Updated: 2026/01/30 19:08:37 by vlnikola         ###   ########.fr        #
+#    Updated: 2026/02/02 13:32:21 by vlnikola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,12 @@ SRCS        = src/parser.c \
               src/cmds/push.c \
               src/cmds/rotate.c \
               src/cmds/reverse_rotate.c \
-			  src/sort_utils.c \
-			  src/sort_utils_2.c \
-			  src/sort_small.c \
-			  src/lists.c \
-			  src/sort.c
+			  src/sort/sort_utils.c \
+			  src/sort/sort_move_node.c \
+			  src/sort/sort_rotations.c \
+			  src/sort/sort_small.c \
+			  src/sort/sort.c \
+			  src/lists.c
 
 OBJS        = $(SRCS:.c=.o)
 
