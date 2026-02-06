@@ -103,7 +103,7 @@ OK
 This project utilized AI assistance for the following specific tasks:
 
 - Bring some ideas with implementation of cost calculation
-- How to determine when you need double or single rotations
+- How can I determine when I execute double or single rotations
 - Making a table in README to reduce the manual work
 - Generate a list of tricky inputs (e.g., duplicates, INT_MAX, non-integer inputs) to verify the program's error management.
 - Making a bash script (test_random.sh) to test the program.

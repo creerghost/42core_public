@@ -6,7 +6,7 @@
 /*   By: vlnikola <vlnikola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:11:37 by vlnikola          #+#    #+#             */
-/*   Updated: 2026/02/02 12:06:35 by vlnikola         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:41:20 by vlnikola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static t_stack	*get_min_node(t_stack *stack)
 	int		min_val;
 	t_stack	*min_node;
 
-	if (!stack)
-		return (NULL);
 	min_val = INT_MAX;
 	min_node = NULL;
 	while (stack)
